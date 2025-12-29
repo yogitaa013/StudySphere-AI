@@ -36,7 +36,7 @@ structured study plan using Hugging Face Inference API.
 ---
 
 ## 🌍 Live Demo
-👉 https://YOUR-RENDER-LINK.onrender.com
+👉 https://studysphere-ai-4.onrender.com/
 
 ---
 
