@@ -7,7 +7,7 @@ app = Flask(__name__)
 # LOAD AI MODEL (FLAN-T5 LARGE)
 # =========================================
 # device=-1 uses CPU
-chatbot = pipeline("text2text-generation", model="google/flan-t5-base", device=-1)
+chatbot = pipeline("text2text-generation", model="google/flan-t5-small", device=-1)
 
 # ===========================
 # DETAILED PLACEMENT KNOWLEDGE BASE
