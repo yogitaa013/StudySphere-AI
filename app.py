@@ -1,13 +1,20 @@
+import os
+import requests
 from flask import Flask, render_template, request, jsonify
-from transformers import pipeline
 
 app = Flask(__name__)
 
 # =========================================
 # LOAD AI MODEL (FLAN-T5 LARGE)
 # =========================================
-# device=-1 uses CPU
-chatbot = pipeline("text2text-generation", model="google/flan-t5-small", device=-1)
+HF_API_KEY = os.getenv("HF_API_KEY")
+
+HF_API_URL = "https://api-inference.huggingface.co/models/google/flan-t5-base"
+
+HEADERS = {
+    "Authorization": f"Bearer {HF_API_KEY}"
+}
+
 
 # ===========================
 # DETAILED PLACEMENT KNOWLEDGE BASE
@@ -193,19 +200,22 @@ def generate_plan(subject, days):
 # =========================================
 # SYSTEM PROMPT FOR CHATBOT
 # =========================================
-SYSTEM_PROMPT = """
-You are an AI Study Helper for students.
-You have knowledge of standard Computer Science concepts.
+prompt = f"""
+Answer the following computer science question clearly.
 
 Rules:
+- Give a clear definition
 - Explain in simple English
-- Give proper definition and explanation
-- Use at least one real-life example
-- Give at least 5 sentences
-- Use bullet points if needed
-- Never give a one-line or one-word answer
-- NEVER repeat yourself
+- Give one real-life or coding example
+- Do not repeat sentences
+- Answer in 6–8 sentences
+
+Question:
+
+Answer:
 """
+
+
 
 # =========================================
 # HOME PAGE (STUDY PLANNER)
@@ -235,48 +245,86 @@ def chat():
     user_input = request.json.get("message", "").strip()
     user_input_lower = user_input.lower()
 
-    # Check Knowledge Base first
+    # ===============================
+    # 1️⃣ STRICT Knowledge Base Match
+    # ===============================
     for topic, info in knowledge_base.items():
-        if topic.lower() in user_input_lower:
-            reply = f"{topic}:\nDefinition: {info.get('definition','')}\n"
-            
-            # Key concepts / four pillars / types
-            key_concepts = info.get("key_concepts") or info.get("four_pillars") or info.get("key_topics") or info.get("types")
+        if user_input_lower in [
+            f"explain {topic.lower()}",
+            topic.lower(),
+            f"what is {topic.lower()}",
+            f"define {topic.lower()}"
+        ]:
+            reply = f"{topic}:\n\n"
+            reply += f"Definition:\n{info.get('definition','')}\n\n"
+
+            key_concepts = (
+                info.get("key_concepts")
+                or info.get("four_pillars")
+                or info.get("key_topics")
+                or info.get("types")
+            )
+
             if key_concepts:
                 reply += "Key Concepts:\n"
                 for k, v in key_concepts.items():
                     reply += f"- {k}: {v}\n"
 
-            # Placement tips
             placement_tips = info.get("placement_tips")
             if placement_tips:
-                reply += "Placement Tips:\n"
+                reply += "\nPlacement Tips:\n"
                 for tip in placement_tips:
                     reply += f"- {tip}\n"
 
-            # Example
             example = info.get("example")
             if example:
-                reply += f"Example: {example}\n"
+                reply += f"\nExample:\n{example}\n"
 
             return jsonify({"reply": reply})
 
-    # Fallback to AI
-    prompt = f"{SYSTEM_PROMPT}\n\nQuestion: {user_input}\n\nAnswer:"
-    result = chatbot(prompt, max_new_tokens=200, do_sample=True, top_p=0.9, temperature=0.7)
-    reply = result[0]["generated_text"].strip()
+    # ===============================
+    # 2️⃣ Hugging Face Fallback (GEN AI)
+    # ===============================
+    prompt = f"""
+Answer the following computer science question clearly.
+
+Rules:
+- Give a clear definition
+- Explain in simple English
+- Give one real-life or coding example
+- Do NOT repeat sentences
+- Answer in 6–8 sentences
+
+Question:
+{user_input}
+
+Answer:
+"""
+
+    payload = {
+        "inputs": prompt,
+        "parameters": {
+            "max_new_tokens": 180,
+            "temperature": 0.3,
+            "top_p": 0.85,
+            "repetition_penalty": 1.3,
+            "do_sample": True
+        }
+    }
+
+    response = requests.post(HF_API_URL, headers=HEADERS, json=payload)
+
+    if response.status_code != 200:
+        return jsonify({"reply": "AI service is currently unavailable. Please try again later."})
+
+    result = response.json()
+
+    if isinstance(result, list) and "generated_text" in result[0]:
+        reply = result[0]["generated_text"]
+    else:
+        reply = "Sorry, I couldn't generate a response."
 
     if "Answer:" in reply:
         reply = reply.split("Answer:")[-1].strip()
 
-    if len(reply.split()) < 3:
-        reply = "Please ask a clear Computer Science question."
-
     return jsonify({"reply": reply})
-
-# =========================================
-# RUN APP
-# =========================================
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
-
