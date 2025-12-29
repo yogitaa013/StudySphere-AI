@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AI Daily Life Helper</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-content">
+        <div class="header-text">
+            <h1>🧠 StudySphere AI </h1>
+            <p class="tagline">
+                Your personal AI assistant for study planning, stress relief,
+                and placement preparation.
+            </p>
+        </div>
+
+        <div class="header-image">
+            <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
+                 alt="Student studying with laptop">
+        </div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- LEFT COLUMN -->
+    <div class="left-column">
+
+        <!-- INTRO -->
+        <div class="section intro">
+            <h2>👋 Welcome Student!</h2>
+            <p>
+                This AI-powered platform helps you plan your studies,
+                stay mentally relaxed, and prepare effectively for placements.
+            </p>
+        </div>
+
+        <!-- STUDY PLANNER -->
+        <div class="section">
+            <h3>📚 Smart Study Planner</h3>
+            <p class="section-desc">
+                Enter your subject and number of days. Our AI will create a
+                realistic, high-focus study plan.
+            </p>
+
+            <form method="POST">
+                <input type="text" name="subject" placeholder="DSA, OOPS, OS, DBMS" required>
+                <input type="number" name="days" placeholder="Days (e.g. 10)" required>
+                <button type="submit">Generate Study Plan</button>
+            </form>
+
+            {% if response %}
+            <div class="output">
+                <pre id="study-plan-preview">{{ response|truncate(250, True, '...') }}</pre>
+                <pre id="full-study-plan" style="display:none;">{{ response }}</pre>
+                <button id="toggle-plan" onclick="togglePlan()">Show More</button>
+            </div>
+            {% endif %}
+        </div>
+    
+       <div class="section youtube-section">
+    <div class="youtube-header">
+        <h3>📺 Recommended YouTube Channels <span class="youtube-logo">🎬</span></h3>
+        <button onclick="toggleContent('youtube-channels')">Explore Channels</button>
+    </div>
+    <p class="section-desc">
+        Learn concepts visually from top educators trusted by students.
+    </p>
+
+    <div id="youtube-channels" class="hidden-content">
+        <ul>
+            <li><a href="https://www.youtube.com/c/CodeWithHarry" target="_blank">CodeWithHarry – Full Stack & DSA</a></li>
+            <li><a href="https://www.youtube.com/c/ApnaCollege" target="_blank">Apna College – Placement Prep</a></li>
+            <li><a href="https://www.youtube.com/c/MySirG" target="_blank">MySirG – Core CS Subjects</a></li>
+            <li><a href="https://www.youtube.com/c/CSDojo" target="_blank">CS Dojo – Interview Thinking</a></li>
+            <li><a href="https://www.youtube.com/c/TakeUforward" target="_blank">Take U Forward – Advanced DSA</a></li>
+        </ul>
+
+        <iframe src="https://www.youtube.com/embed/8ext9G7xspg" allowfullscreen></iframe>
+        <iframe src="https://www.youtube.com/embed/qiSCMNBIP2g" allowfullscreen></iframe>
+    </div>
+</div>
+
+
+       <!-- PLACEMENT EXPERIENCES -->
+<div class="section placement-section">
+    <h3>💼 Placement Experiences</h3>
+    <p class="section-desc">
+        Real interview journeys to help you understand what companies expect.
+    </p>
+
+    <div class="placement-content">
+        <div class="placement-text">
+            <ul>
+                <li><strong>TCS:</strong> DSA + HR basics, interview tips.</li>
+                <li><strong>Infosys:</strong> OOPS + coding questions + communication.</li>
+                <li><strong>Amazon:</strong> Problem-solving + approach clarity.</li>
+            <p style="margin-top: 10px;">
+                🔗 <a href="https://www.geeksforgeeks.org/company-interview-corner/" target="_blank">
+                    Read 1000+ Real Interview Experiences on GeeksforGeeks
+                </a>
+            </p>
+        </div>
+
+        <div class="placement-image">
+            <img src="https://bilaldalgun.com/wp-content/uploads/2023/05/LinkedIn-Recruiter-Profile.jpg" 
+                 alt="Student interview" />
+        </div>
+    </div>
+</div>
+
+    </div>
+
+    <!-- RIGHT COLUMN -->
+    <div class="right-column">
+      <!-- AI CHATBOT -->
+<div class="section chatbot compact-chatbot">
+    <h3>🤖 AI Study Assistant</h3>
+
+    <p class="section-desc small-text">
+        Ask doubts on DSA, OOPS, DBMS, OS, placements.
+    </p>
+
+    <div id="chat-area" class="chat-small"></div>
+
+    <div class="chat-input-area compact-input">
+        <input type="text" id="chat-input" placeholder="Ask a question...">
+        <button onclick="sendChat()">Send</button>
+    </div>
+</div>
+<!-- STRESS RELIEF -->
+<div class="section stress-section">
+    <h3>😌 Stress Relief</h3>
+    <div class="stress-content">
+        <div class="stress-text">
+            <p>
+                Feeling overwhelmed from studying? Take a short mental break and refresh your mind.
+            <a href="/stress"><button>Go to Stress Relief</button></a>
+        </div>
+
+        <div class="stress-image">
+               <img src="https://tse2.mm.bing.net/th/id/OIP.BVvmTKUfiDwqwvkP-2HXpwHaEO?rs=1&pid=ImgDetMain&o=7&rm=3" 
+                 alt="Relaxing student"> 
+        </div>
+    </div>
+</div>       
+        
+       <!-- FOOD & ROUTINE -->
+<div class="section food-section">
+    <h3>🍽️ Food & Daily Routine</h3>
+
+    <div class="food-layout">
+
+        <!-- LEFT TEXT -->
+        <div class="food-text">
+            <p class="food-desc">
+                Proper food and daily routine play a huge role in focus,
+                memory, and energy levels during placement preparation.
+                Eating right keeps your brain active and stress low.
+            </p>
+
+            <button onclick="toggleContent('food-tips')" class="food-btn">
+                Show Food Tips
+            </button>
+        </div>
+
+        <!-- RIGHT IMAGE -->
+        <div class="food-image-box">
+            <img
+                src="https://images.unsplash.com/photo-1490645935967-10de6ba17061"
+                alt="Healthy student meal"
+            >
+        </div>
+
+    </div>
+
+    <!-- FOOD TIPS -->
+    <div id="food-tips" class="hidden-content">
+        <ul>
+            <li>Protein-rich breakfast (eggs, fruits, milk)</li>
+            <li>Drink 2–3 liters of water daily</li>
+            <li>Avoid junk food during long study hours</li>
+            <li>Light dinner before sleep</li>
+            <li>7–8 hours of quality sleep</li>
+        </ul>
+    </div>
+</div>
+
+</div>
+
+
+    </div>
+
+</div>
+<script>
+async function sendChat() {
+    const input = document.getElementById("chat-input");
+    const chatArea = document.getElementById("chat-area");
+    const message = input.value.trim();
+    if (!message) return;
+
+    // Display user message
+    const userMsg = document.createElement("p");
+    userMsg.innerHTML = `<b>You:</b> ${message}`;
+    chatArea.appendChild(userMsg);
+    chatArea.scrollTop = chatArea.scrollHeight;
+    input.value = "";
+
+    // Call Flask chatbot API
+    try {
+        const response = await fetch("/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message })
+        });
+
+        const data = await response.json();
+        const aiMsg = document.createElement("p");
+        aiMsg.innerHTML = `<b>AI:</b> ${data.reply}`;
+        chatArea.appendChild(aiMsg);
+        chatArea.scrollTop = chatArea.scrollHeight;
+    } catch (err) {
+        const aiMsg = document.createElement("p");
+        aiMsg.innerHTML = `<b>AI:</b> Sorry, something went wrong.`;
+        chatArea.appendChild(aiMsg);
+    }
+}
+
+// Optional: trigger on Enter key
+document.getElementById("chat-input").addEventListener("keypress", function(e) {
+    if (e.key === "Enter") {
+        sendChat();
+        e.preventDefault();
+    }
+});
+function toggleContent(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+
+    if (el.style.display === "block") {
+        el.style.display = "none";
+    } else {
+        el.style.display = "block";
+    }
+}
+function togglePlan() {
+    const preview = document.getElementById("study-plan-preview");
+    const fullPlan = document.getElementById("full-study-plan");
+    const button = document.getElementById("toggle-plan");
+
+    if (fullPlan.style.display === "none") {
+        fullPlan.style.display = "block";
+        preview.style.display = "none";
+        button.innerText = "Show Less";
+    } else {
+        fullPlan.style.display = "none";
+        preview.style.display = "block";
+        button.innerText = "Show More";
+        }
+    }
+</script>
+
+
+</body>
+</html>

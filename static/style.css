@@ -1,0 +1,569 @@
+/* Body styling */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f9ff;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+/* Page heading */
+h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: #2c3e50;
+}
+
+/* Container for two columns */
+.container {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+/* Left and right columns */
+.left-column, .right-column {
+    flex: 1;
+    min-width: 300px;
+}
+
+/* Section styling */
+.section {
+    background: #fff;
+    padding: 20px;
+    margin-bottom: 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Section headings */
+.section h3 {
+    color: #34495e;
+    margin-bottom: 15px;
+}
+
+/* Form inputs */
+input[type="text"],
+input[type="number"],
+textarea {
+    width: 100%;
+    padding: 10px 12px;
+    margin: 8px 0 15px 0;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 8px;
+    border: none;
+    background-color: #0077cc;
+    color: white;
+    font-size: 1rem;
+    transition: background 0.2s;
+    margin-top: 10px;
+}
+
+button:hover {
+    background-color: #005fa3;
+}
+
+/* Links with buttons */
+a button {
+    width: 100%;
+}
+
+/* Hidden content */
+.hidden-content {
+    display: none;
+    margin-top: 15px;
+    padding: 15px;
+    background: #f0f8ff;
+    border-radius: 10px;
+}
+
+.hidden-content ul {
+    padding-left: 20px;
+}
+
+.hidden-content li {
+    margin: 10px 0;
+}
+
+/* Iframe styling */
+iframe {
+    width: 100%;
+    height: 200px;
+    margin: 10px 0;
+    border-radius: 8px;
+}
+
+/* Preformatted text */
+pre {
+    background: #f0f8ff;
+    padding: 15px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+/* Chat area */
+#chat-area {
+    height: 220px;
+    overflow-y: auto;
+    background: #f0f8ff;
+    padding: 10px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+}
+
+/* Study plan output */
+.output {
+    background-color: #ecf0f1;
+    padding: 15px;
+    border-radius: 8px;
+    margin-top: 15px;
+    font-family: monospace;
+    white-space: pre-wrap;
+    line-height: 1.5;
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .container {
+        flex-direction: column;
+    }
+}
+
+@media (max-width: 650px) {
+    .section {
+        padding: 15px 20px;
+        margin: 15px;
+    }
+
+    input, button {
+        font-size: 14px;
+    }
+}
+/* =========================
+   HEADER & LOGO
+========================= */
+
+.header {
+    background: linear-gradient(135deg, #0077cc, #003f7f);
+    color: white;
+    padding: 25px 15px;
+    text-align: center;
+    border-radius: 12px;
+    margin-bottom: 25px;
+}
+
+.logo {
+    font-size: 2rem;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo span {
+    font-weight: 500;
+}
+
+.tagline {
+    font-size: 0.95rem;
+    opacity: 0.9;
+    margin-top: 8px;
+}
+
+/* =========================
+   INTRO SECTION
+========================= */
+
+.intro p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+}
+
+/* =========================
+   SECTION DESCRIPTION TEXT
+========================= */
+
+.section-desc {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 12px;
+}
+
+/* =========================
+   CHATBOT SEPARATE LOOK
+========================= */
+
+.chatbot {
+    border: 2px solid #0077cc22;
+}
+
+.chat-input-area {
+    display: flex;
+    gap: 8px;
+}
+
+.chat-input-area input {
+    flex: 1;
+}
+
+/* Chat bubbles */
+#chat-area p {
+    margin: 6px 0;
+    padding: 6px 8px;
+    border-radius: 6px;
+}
+
+#chat-area p b {
+    color: #005fa3;
+}
+
+/* =========================
+   STUDY PLAN BUTTON
+========================= */
+
+#toggle-plan {
+    margin-top: 10px;
+    background-color: #2ecc71;
+}
+
+#toggle-plan:hover {
+    background-color: #27ae60;
+}
+
+/* =========================
+   SMALL UI POLISH
+========================= */
+
+.section h3 {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+button {
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+button:active {
+    transform: scale(0.98);
+}
+
+/* ================= HEADER / HERO ================= */
+
+.header {
+    background: linear-gradient(135deg, #e3f2fd, #f5f9ff);
+    padding: 40px 30px;
+    border-radius: 0 0 30px 30px;
+    margin-bottom: 30px;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 30px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+.header-text h1 {
+    font-size: 2.4rem;
+    color: #2c3e50;
+}
+
+.tagline {
+    font-size: 1.1rem;
+    margin-top: 10px;
+    color: #555;
+    max-width: 500px;
+}
+
+.header-image img {
+    height:300px;
+    width: 500px;
+    border-radius: 18px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* Responsive hero */
+@media (max-width: 900px) {
+    .header-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .header-image img {
+        width: 100%;
+        max-width: 360px;
+    }
+}
+.hidden-content a {
+    color: #0077cc;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.hidden-content a:hover {
+    text-decoration: underline;
+}
+/* FOOD ROUTINE SECTION */
+.food-section {
+    text-align: center;
+}
+
+.food-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.food-image {
+    width: 100%;
+    max-height: 160px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+/* COMPACT CHATBOT */
+.compact-chatbot {
+    padding: 15px;
+}
+
+/* Smaller description text */
+.small-text {
+    font-size: 0.85rem;
+    margin-bottom: 8px;
+}
+
+/* Reduce chat area height */
+.chat-small {
+    height: 100px;
+    overflow-y: auto;
+    font-size: 0.85rem;
+    padding: 8px;
+    border-radius: 8px;
+}
+
+/* Compact input */
+.compact-input {
+    display: flex;
+    gap: 6px;
+}
+
+.compact-input input {
+    font-size: 0.85rem;
+    padding: 8px;
+}
+
+.compact-input button {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+}
+.hidden-content {
+    display: none;
+    margin-top: 12px;
+    padding: 12px;
+    background: #f0f8ff;
+    border-radius: 8px;
+}
+/* FOOD SECTION */
+.food-section {
+    padding: 20px;
+}
+
+.food-layout {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.food-text {
+    flex: 1;
+}
+
+.food-desc {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 12px;
+    color: #444;
+}
+
+.food-btn {
+    background: #27ae60;
+    color: white;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+.food-btn:hover {
+    background: #1e8e4f;
+}
+
+.food-image-box {
+    flex: 1;
+    text-align: right;
+}
+
+.food-image-box img {
+    width: 100%;
+    max-height: 180px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.12);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .food-layout {
+        flex-direction: column;
+    }
+
+    .food-image-box {
+        text-align: center;
+    }
+}
+
+/* PLACEMENT SECTION FLEX */
+.placement-section .placement-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.placement-section .placement-text {
+    flex: 1;
+}
+
+.placement-section .placement-image {
+    flex: 1;
+    text-align: center;
+}
+
+.placement-section .placement-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Make responsive for smaller screens */
+@media (max-width: 900px) {
+    .placement-section .placement-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .placement-section .placement-text {
+        margin-bottom: 15px;
+    }
+}
+/* STRESS SECTION FLEX */
+.stress-section .stress-content {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+
+.stress-section .stress-text {
+    flex: 1;
+}
+
+.stress-section .stress-image {
+    flex: 1;
+    text-align: center;
+}
+@media (max-width: 600px) {
+    .stress-section .stress-image img {
+        max-width: 90%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .stress-section .stress-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stress-section .stress-text {
+        margin-bottom: 15px;
+    }
+}
+
+.youtube-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.youtube-header h3 {
+    margin: 0;
+}
+
+.youtube-logo {
+    font-size: 1.5rem; /* small emoji on right side of heading */
+    margin-left: 10px;
+}
+
+.youtube-header button {
+    padding: 8px 12px;
+    font-size: 1rem;
+}
+/* Stress Section Flex */
+.stress-section .stress-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.stress-section .stress-text {
+    flex: 1;
+    min-width: 250px;
+}
+
+.stress-section .stress-image {
+    flex: 1;
+    text-align: center;
+    min-width: 250px;
+}
+
+.stress-section .stress-image img {
+    width: 100%;
+    max-width: 350px; /* limits image size on large screens */
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .stress-section .stress-content {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .stress-section .stress-image img {
+        max-width: 80%; /* image scales down on smaller screens */
+    }
+}
